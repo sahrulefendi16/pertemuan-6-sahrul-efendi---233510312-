@@ -7,7 +7,51 @@
 </head>
 <body>
     <script>
-    async function prosesTransaksi() {
+        // Callback
+        function ambilDataUser(userId, callback) {
+            setTimeout(() => {
+                const user = {
+                    id: userId,
+                    nama: "John Doe",
+                    email: "john@example.com"
+                };
+                callback(user);
+            }, 2000);
+        }
+
+        console.log("--- Callback Method ---");
+        console.log("Memulai pengambilan data...");
+        ambilDataUser(123, (user) => {
+            console.log("Data user diterima:", user);
+        });
+        console.log("Proses lanjut...");
+
+        // Promise
+        function ambilDataProduk() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const produk = [
+                        { id: 1, nama: "Laptop", harga: 10000000 },
+                        { id: 2, nama: "Smartphone", harga: 5000000 }
+                    ];
+                    resolve(produk);
+                }, 3000);
+            });
+        }
+
+        console.log("\n--- Promise Method ---");
+        console.log("Memulai pengambilan produk...");
+        ambilDataProduk()
+            .then((produk) => {
+                console.log("Daftar Produk:", produk);
+            })
+            .catch((error) => {
+                console.error("Terjadi kesalahan:", error);
+            });
+        console.log("Proses lanjut...");
+
+        // Async/Await 
+        async function prosesTransaksi() {
             try {
                 await new Promise((resolve) => {
                     setTimeout(() => {
