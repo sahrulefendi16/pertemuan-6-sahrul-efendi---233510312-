@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PBK Tugas 6</title>
+</head>
+<body>
+    <script>
+    async function prosesTransaksi() {
+            try {
+                await new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, 4000);
+                });
+                
+                const statusTransaksi = {
+                    id: "TRX001",
+                    status: "Berhasil",
+                    waktu: new Date().toLocaleString()
+                };
+                
+                console.log("\n--- Async/Await Method ---");
+                console.log("Transaksi selesai:", statusTransaksi);
+                return statusTransaksi;
+            } catch (error) {
+                console.error("Gagal memproses transaksi:", error);
+            }
+        }
+
+        async function utama() {
+            console.log("Memulai transaksi...");
+            const hasil = await prosesTransaksi();
+            console.log("Detail Transaksi:", hasil);
+        }
+
+        utama();
+        console.log("Proses lanjut...");
+    </script>
+    
+</body>
+</html>
